@@ -8,50 +8,84 @@ import (
 	"strings"
 )
 
-// Song mendefinisikan struktur untuk data lagu.
 type Song struct {
 	ID              string
 	Judul           string
 	Penyanyi        string
-	Durasi          float64 // Durasi dalam menit
+	Durasi          float64
 	JumlahPendengar int
 }
 
-// Konstanta untuk ukuran array statis.
 const NMAXLagu = 100
 
-// daftarLagu adalah array statis untuk menyimpan lagu.
 var daftarLagu [NMAXLagu]Song
-var jumlahLaguTerisi int // Melacak jumlah lagu yang sebenarnya terisi dalam array
+var jumlahLaguTerisi int
 
-// initDummyData menginisialisasi daftarLagu dengan beberapa data contoh.
+// initDummyData menginisialisasi daftar lagu dengan data contoh awal.
 func initDummyData() {
-	dummyDataSlice := []Song{
-		{ID: "L001", Judul: "Monokrom", Penyanyi: "Tulus", Durasi: 3.5, JumlahPendengar: 350},
-		{ID: "L002", Judul: "Sial", Penyanyi: "Mahalini", Durasi: 4.1, JumlahPendengar: 420},
-		{ID: "L003", Judul: "As It Was", Penyanyi: "Harry Styles", Durasi: 2.8, JumlahPendengar: 550},
-		{ID: "L004", Judul: "Bertaut", Penyanyi: "Nadin Amizah", Durasi: 4.3, JumlahPendengar: 280},
-		{ID: "L005", Judul: "Glimpse of Us", Penyanyi: "Joji", Durasi: 3.9, JumlahPendengar: 480},
-		{ID: "L006", Judul: "Hati-Hati di Jalan", Penyanyi: "Tulus", Durasi: 4.0, JumlahPendengar: 320},
-		{ID: "L007", Judul: "Until I Found You", Penyanyi: "Stephen Sanchez", Durasi: 3.0, JumlahPendengar: 510},
-		{ID: "L008", Judul: "Komang", Penyanyi: "Raim Laode", Durasi: 3.7, JumlahPendengar: 390},
-		{ID: "L009", Judul: "Anti-Hero", Penyanyi: "Taylor Swift", Durasi: 3.3, JumlahPendengar: 600},
-		{ID: "L010", Judul: "Tak Ingin Usai", Penyanyi: "Keisya Levronka", Durasi: 4.6, JumlahPendengar: 250},
-		{ID: "L011", Judul: "Dandelions", Penyanyi: "Ruth B.", Durasi: 3.8, JumlahPendengar: 450},
-		{ID: "L012", Judul: "Runtuh", Penyanyi: "Feby Putri ft. Fiersa Besari", Durasi: 4.2, JumlahPendengar: 310},
-		{ID: "L013", Judul: "Kill Bill", Penyanyi: "SZA", Durasi: 2.6, JumlahPendengar: 580},
-		{ID: "L014", Judul: "To The Bone", Penyanyi: "Pamungkas", Durasi: 5.8, JumlahPendengar: 290},
-		{ID: "L015", Judul: "Here With Me", Penyanyi: "d4vd", Durasi: 4.0, JumlahPendengar: 470},
+	if NMAXLagu >= 1 {
+		daftarLagu[0] = Song{ID: "L001", Judul: "Monokrom", Penyanyi: "Tulus", Durasi: 3.5, JumlahPendengar: 350}
 	}
-	jumlahLaguTerisi = 0
-	for i := 0; i < len(dummyDataSlice) && jumlahLaguTerisi < NMAXLagu; i++ {
-		daftarLagu[jumlahLaguTerisi] = dummyDataSlice[i]
-		jumlahLaguTerisi++
+	if NMAXLagu >= 2 {
+		daftarLagu[1] = Song{ID: "L002", Judul: "Sial", Penyanyi: "Mahalini", Durasi: 4.1, JumlahPendengar: 420}
 	}
-	insertionSortByIDAsc()
+	if NMAXLagu >= 3 {
+		daftarLagu[2] = Song{ID: "L003", Judul: "As It Was", Penyanyi: "Harry Styles", Durasi: 2.8, JumlahPendengar: 550}
+	}
+	if NMAXLagu >= 4 {
+		daftarLagu[3] = Song{ID: "L004", Judul: "Bertaut", Penyanyi: "Nadin Amizah", Durasi: 4.3, JumlahPendengar: 280}
+	}
+	if NMAXLagu >= 5 {
+		daftarLagu[4] = Song{ID: "L005", Judul: "Glimpse of Us", Penyanyi: "Joji", Durasi: 3.9, JumlahPendengar: 480}
+	}
+	if NMAXLagu >= 6 {
+		daftarLagu[5] = Song{ID: "L006", Judul: "Hati-Hati di Jalan", Penyanyi: "Tulus", Durasi: 4.0, JumlahPendengar: 320}
+	}
+	if NMAXLagu >= 7 {
+		daftarLagu[6] = Song{ID: "L007", Judul: "Until I Found You", Penyanyi: "Stephen Sanchez", Durasi: 3.0, JumlahPendengar: 510}
+	}
+	if NMAXLagu >= 8 {
+		daftarLagu[7] = Song{ID: "L008", Judul: "Komang", Penyanyi: "Raim Laode", Durasi: 3.7, JumlahPendengar: 390}
+	}
+	if NMAXLagu >= 9 {
+		daftarLagu[8] = Song{ID: "L009", Judul: "Anti-Hero", Penyanyi: "Taylor Swift", Durasi: 3.3, JumlahPendengar: 600}
+	}
+	if NMAXLagu >= 10 {
+		daftarLagu[9] = Song{ID: "L010", Judul: "Tak Ingin Usai", Penyanyi: "Keisya Levronka", Durasi: 4.6, JumlahPendengar: 250}
+	}
+	if NMAXLagu >= 11 {
+		daftarLagu[10] = Song{ID: "L011", Judul: "Dandelions", Penyanyi: "Ruth B.", Durasi: 3.8, JumlahPendengar: 450}
+	}
+	if NMAXLagu >= 12 {
+		daftarLagu[11] = Song{ID: "L012", Judul: "Runtuh", Penyanyi: "Feby Putri ft. Fiersa Besari", Durasi: 4.2, JumlahPendengar: 310}
+	}
+	if NMAXLagu >= 13 {
+		daftarLagu[12] = Song{ID: "L013", Judul: "Kill Bill", Penyanyi: "SZA", Durasi: 2.6, JumlahPendengar: 580}
+	}
+	if NMAXLagu >= 14 {
+		daftarLagu[13] = Song{ID: "L014", Judul: "To The Bone", Penyanyi: "Pamungkas", Durasi: 5.8, JumlahPendengar: 290}
+	}
+	if NMAXLagu >= 15 {
+		daftarLagu[14] = Song{ID: "L015", Judul: "Here With Me", Penyanyi: "d4vd", Durasi: 4.0, JumlahPendengar: 470}
+	}
+
+	if NMAXLagu < 15 {
+		jumlahLaguTerisi = NMAXLagu
+		if NMAXLagu > 0 {
+			fmt.Printf("Peringatan: NMAXLagu (%d) lebih kecil dari jumlah data dummy (15). Hanya %d data yang diinisialisasi.\n", NMAXLagu, NMAXLagu)
+		} else if NMAXLagu == 0 {
+			fmt.Println("Peringatan: NMAXLagu adalah 0. Tidak ada data dummy yang diinisialisasi.")
+		}
+	} else {
+		jumlahLaguTerisi = 15
+	}
+
+	if jumlahLaguTerisi > 0 {
+		insertionSortByIDAsc()
+	}
 }
 
-// generateNewID menghasilkan ID unik baru untuk lagu.
+// generateNewID menghasilkan ID unik baru untuk lagu berikutnya berdasarkan ID terakhir yang ada.
 func generateNewID() string {
 	if jumlahLaguTerisi == 0 {
 		return "L001"
@@ -70,7 +104,8 @@ func generateNewID() string {
 	return fmt.Sprintf("L%03d", maxNum+1)
 }
 
-// findLaguByID mencari lagu berdasarkan ID (sequential search).
+// findLaguByID mencari lagu dalam daftarLagu berdasarkan ID secara sequential search.
+// Mengembalikan indeks lagu jika ditemukan dan status boolean true, atau -1 dan false jika tidak.
 func findLaguByID(id string) (int, bool) {
 	for i := 0; i < jumlahLaguTerisi; i++ {
 		if daftarLagu[i].ID == id {
@@ -80,7 +115,7 @@ func findLaguByID(id string) (int, bool) {
 	return -1, false
 }
 
-// tambahLagu menambahkan lagu baru ke array.
+// tambahLagu menangani proses penambahan lagu baru ke dalam daftarLagu.
 func tambahLagu() {
 	var laguBaru Song
 	var input string
@@ -89,7 +124,7 @@ func tambahLagu() {
 	var errScanFloat error
 
 	if jumlahLaguTerisi >= NMAXLagu {
-		fmt.Println("Kapasitas database penuh. Tidak bisa menambah lagu.  ")
+		fmt.Println("Kapasitas database penuh. Tidak bisa menambah lagu.")
 		return
 	}
 
@@ -106,7 +141,7 @@ func tambahLagu() {
 		if errRead == nil {
 			laguBaru.Judul = strings.TrimSpace(input)
 			if laguBaru.Judul == "" {
-				fmt.Println("Judul Lagu tidak boleh kosong. Silakan coba lagi.    ")
+				fmt.Println("Judul Lagu tidak boleh kosong. Silakan coba lagi.")
 			} else {
 				judulValid = true
 			}
@@ -122,7 +157,7 @@ func tambahLagu() {
 		if errRead == nil {
 			laguBaru.Penyanyi = strings.TrimSpace(input)
 			if laguBaru.Penyanyi == "" {
-				fmt.Println("Nama Penyanyi tidak boleh kosong. Silakan coba lagi. ")
+				fmt.Println("Nama Penyanyi tidak boleh kosong. Silakan coba lagi.")
 			} else {
 				penyanyiValid = true
 			}
@@ -142,10 +177,7 @@ func tambahLagu() {
 				laguBaru.Durasi = parsedDurasi
 				durasiValid = true
 			} else {
-				fmt.Println("Durasi tidak valid. Harap masukkan angka positif.  ")
-				if errScanFloat != nil {
-					// fmt.Println("| Detail kesalahan konversi durasi:", errScanFloat)
-				}
+				fmt.Println("Durasi tidak valid. Harap masukkan angka positif.")
 			}
 		} else {
 			fmt.Println("Kesalahan membaca input durasi:", errRead)
@@ -155,10 +187,10 @@ func tambahLagu() {
 	daftarLagu[jumlahLaguTerisi] = laguBaru
 	jumlahLaguTerisi++
 	insertionSortByIDAsc()
-	fmt.Println("Lagu berhasil ditambahkan!                           ")
+	fmt.Println("Lagu berhasil ditambahkan!")
 }
 
-// updateLagu memperbarui data lagu yang ada.
+// updateLagu menangani proses pembaruan data lagu yang sudah ada.
 func updateLagu() {
 	var idCari, input, newJudul, newPenyanyi string
 	var index int
@@ -167,45 +199,43 @@ func updateLagu() {
 	var parsedDurasi float64
 	var newJumlahPendengar int
 
-	fmt.Println("| --- Update Data Lagu (ID Tidak Dapat Diubah) ---   |")
 	if jumlahLaguTerisi == 0 {
-		fmt.Println("| Database lagu kosong. Tidak ada data untuk diupdate. |")
+		fmt.Println("Database lagu kosong. Tidak ada data untuk diupdate.")
 		return
 	}
 
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("| Masukkan ID Lagu yang akan diupdate: ")
+	fmt.Print("Masukkan ID Lagu yang akan diupdate: ")
 	input, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca ID:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca ID:", errRead)
+		return
+	}
 	idCari = strings.TrimSpace(input)
 
 	index, found = binarySearchByID(idCari)
 	if !found {
-		fmt.Printf("| Lagu dengan ID '%s' tidak ditemukan.             |\n", idCari)
+		fmt.Printf("Lagu dengan ID '%s' tidak ditemukan.\n", idCari)
 		return
 	}
-	
-	fmt.Println("|------------------------------------------------------|")
-	fmt.Println("| Data Lagu Saat Ini (ID Tidak Dapat Diubah):          |")
-	fmt.Printf("| ID                : %-33s |\n", daftarLagu[index].ID)
-	fmt.Printf("| Judul Lama        : %-33s |\n", truncateString(daftarLagu[index].Judul, 33))
-	fmt.Printf("| Penyanyi Lama     : %-33s |\n", truncateString(daftarLagu[index].Penyanyi, 33))
-	fmt.Printf("| Durasi Lama       : %-33.1f |\n", daftarLagu[index].Durasi)
-	fmt.Printf("| Jml Pendengar Lama: %-30d |\n", daftarLagu[index].JumlahPendengar)
-	fmt.Println("|------------------------------------------------------|")
-	fmt.Println("| Masukkan data baru (kosongkan jika tidak ingin diubah): |")
 
-	fmt.Printf("| Judul Baru (Lama: %s): ", truncateString(daftarLagu[index].Judul, 20)) // Tampilkan judul lama dipotong
+	fmt.Printf("Judul Baru (Lama: %s): ", truncateString(daftarLagu[index].Judul, 20))
 	input, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca judul baru:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca judul baru:", errRead)
+		return
+	}
 	newJudul = strings.TrimSpace(input)
 	if newJudul != "" {
 		daftarLagu[index].Judul = newJudul
 	}
 
-	fmt.Printf("| Penyanyi Baru (Lama: %s): ", truncateString(daftarLagu[index].Penyanyi, 20)) // Tampilkan penyanyi lama dipotong
+	fmt.Printf("Penyanyi Baru (Lama: %s): ", truncateString(daftarLagu[index].Penyanyi, 20))
 	input, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca penyanyi baru:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca penyanyi baru:", errRead)
+		return
+	}
 	newPenyanyi = strings.TrimSpace(input)
 	if newPenyanyi != "" {
 		daftarLagu[index].Penyanyi = newPenyanyi
@@ -213,7 +243,7 @@ func updateLagu() {
 
 	var durasiUpdateSelesai bool = false
 	for !durasiUpdateSelesai {
-		fmt.Printf("| Durasi Baru (Lama: %.1f): ", daftarLagu[index].Durasi)
+		fmt.Printf("Durasi Baru (Lama: %.1f): ", daftarLagu[index].Durasi)
 		input, errRead = reader.ReadString('\n')
 		if errRead == nil {
 			input = strings.TrimSpace(input)
@@ -225,17 +255,17 @@ func updateLagu() {
 					daftarLagu[index].Durasi = parsedDurasi
 					durasiUpdateSelesai = true
 				} else {
-					fmt.Println("| Durasi tidak valid. Harap masukkan angka positif.  |")
+					fmt.Println("Durasi tidak valid. Harap masukkan angka positif.  ")
 				}
 			}
 		} else {
-			fmt.Println("| Kesalahan membaca durasi baru:", errRead)
+			fmt.Println("Kesalahan membaca durasi baru:", errRead)
 		}
 	}
 
 	var pendengarUpdateSelesai bool = false
 	for !pendengarUpdateSelesai {
-		fmt.Printf("| Jumlah Pendengar Baru (Lama: %d): ", daftarLagu[index].JumlahPendengar)
+		fmt.Printf("Jumlah Pendengar Baru (Lama: %d): ", daftarLagu[index].JumlahPendengar)
 		input, errRead = reader.ReadString('\n')
 		if errRead == nil {
 			input = strings.TrimSpace(input)
@@ -247,55 +277,59 @@ func updateLagu() {
 					daftarLagu[index].JumlahPendengar = newJumlahPendengar
 					pendengarUpdateSelesai = true
 				} else {
-					fmt.Println("| Jumlah pendengar tidak valid. Harap masukkan angka non-negatif. |")
+					fmt.Println("Jumlah pendengar tidak valid. Harap masukkan angka non-negatif. ")
 				}
 			}
 		} else {
-			fmt.Println("| Kesalahan membaca jumlah pendengar baru:", errRead)
+			fmt.Println("Kesalahan membaca jumlah pendengar baru:", errRead)
 		}
 	}
 
-	fmt.Println("|------------------------------------------------------|")
-	fmt.Println("| Data lagu berhasil diupdate!                         |")
+	fmt.Println("Data lagu berhasil diupdate!")
 }
 
-// hapusLagu menghapus lagu dari array.
+// hapusLagu menangani proses penghapusan lagu dari daftarLagu.
 func hapusLagu() {
 	var idCari, konfirmasi string
 	var index int
 	var found bool
 	var errRead error
 
-	fmt.Println("| --- Hapus Lagu ---                                 |")
 	if jumlahLaguTerisi == 0 {
-		fmt.Println("| Database lagu kosong. Tidak ada data untuk dihapus.  |")
+		fmt.Println("Database lagu kosong. Tidak ada data untuk dihapus.  ")
 		return
 	}
 
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("| Masukkan ID Lagu yang akan dihapus: ")
+	fmt.Print("Masukkan ID Lagu yang akan dihapus: ")
 	idCari, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca ID:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca ID:", errRead)
+		return
+	}
 	idCari = strings.TrimSpace(idCari)
 
 	index, found = findLaguByID(idCari)
 	if !found {
-		fmt.Printf("| Lagu dengan ID '%s' tidak ditemukan.               |\n", idCari)
+		fmt.Printf("Lagu dengan ID '%s' tidak ditemukan.\n", idCari)
 		return
 	}
 
-	fmt.Println("|------------------------------------------------------|")
-	fmt.Println("| Lagu yang akan dihapus:                             |")
-	fmt.Printf("| ID         : %-37s |\n", daftarLagu[index].ID)
-	fmt.Printf("| Judul      : %-37s |\n", truncateString(daftarLagu[index].Judul, 37))
-	fmt.Printf("| Penyanyi   : %-37s |\n", truncateString(daftarLagu[index].Penyanyi,37))
-	fmt.Printf("| Durasi     : %-37.1f |\n", daftarLagu[index].Durasi)
-	fmt.Printf("| Pendengar  : %-37d |\n", daftarLagu[index].JumlahPendengar)
-	fmt.Println("|------------------------------------------------------|")
+	fmt.Println("|-------------------------------------------------------|")
+	fmt.Println("| Lagu yang akan dihapus:                               |")
+	fmt.Printf("| ID         : %-40s |\n", daftarLagu[index].ID)
+	fmt.Printf("| Judul      : %-40s |\n", truncateString(daftarLagu[index].Judul, 40))
+	fmt.Printf("| Penyanyi   : %-40s |\n", truncateString(daftarLagu[index].Penyanyi, 40))
+	fmt.Printf("| Durasi     : %-40.1f |\n", daftarLagu[index].Durasi)
+	fmt.Printf("| Pendengar  : %-40d |\n", daftarLagu[index].JumlahPendengar)
+	fmt.Println("|-------------------------------------------------------|")
 
-	fmt.Print("| Apakah Anda yakin ingin menghapus lagu ini? (Y/N): ")
+	fmt.Print("Apakah Anda yakin ingin menghapus lagu ini? (Y/N): ")
 	konfirmasi, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca konfirmasi:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca konfirmasi:", errRead)
+		return
+	}
 	konfirmasi = strings.TrimSpace(strings.ToUpper(konfirmasi))
 
 	if konfirmasi == "Y" {
@@ -303,17 +337,23 @@ func hapusLagu() {
 			daftarLagu[i] = daftarLagu[i+1]
 		}
 		jumlahLaguTerisi--
-		daftarLagu[jumlahLaguTerisi] = Song{}
-		insertionSortByIDAsc()
-		fmt.Println("| Lagu berhasil dihapus!                             |")
+		if jumlahLaguTerisi >= 0 && jumlahLaguTerisi < NMAXLagu {
+			daftarLagu[jumlahLaguTerisi] = Song{}
+		}
+		if jumlahLaguTerisi > 0 {
+			insertionSortByIDAsc()
+		}
+		fmt.Println("Lagu berhasil dihapus!")
 	} else {
-		fmt.Println("| Penghapusan dibatalkan.                            |")
+		fmt.Println("Penghapusan dibatalkan.")
 	}
 }
 
-// binarySearchByID mencari lagu berdasarkan ID.
+// binarySearchByID mencari lagu dalam daftarLagu berdasarkan ID menggunakan binary search.
+// Mengembalikan indeks dan status boolean ditemukan. Array harus terurut berdasarkan ID.
 func binarySearchByID(id string) (int, bool) {
-	low, high := 0, jumlahLaguTerisi-1
+	low := 0
+	high := jumlahLaguTerisi - 1
 	var mid int
 	var ditemukan bool = false
 	var hasilIndex int = -1
@@ -332,7 +372,8 @@ func binarySearchByID(id string) (int, bool) {
 	return hasilIndex, ditemukan
 }
 
-// sequentialSearchByPenyanyi mencari lagu berdasarkan nama penyanyi.
+// sequentialSearchByPenyanyi mencari lagu berdasarkan nama penyanyi secara sequential search.
+// Mengembalikan jumlah hasil yang ditemukan dan mengisi array hasilPencarian.
 func sequentialSearchByPenyanyi(nama string, hasilPencarian *[NMAXLagu]Song) int {
 	namaLower := strings.ToLower(nama)
 	count := 0
@@ -345,89 +386,157 @@ func sequentialSearchByPenyanyi(nama string, hasilPencarian *[NMAXLagu]Song) int
 	return count
 }
 
-// --- Fungsi-Fungsi Pengurutan (beroperasi pada array global daftarLagu) ---
-func insertionSortByIDAsc() { /* Implementasi sama */
-	var i, j int; var key Song
+// insertionSortByIDAsc mengurutkan daftarLagu berdasarkan ID secara menaik (ascending) menggunakan insertion sort.
+func insertionSortByIDAsc() {
+	var i, j int
+	var key Song
 	for i = 1; i < jumlahLaguTerisi; i++ {
-		key = daftarLagu[i]; j = i - 1
-		for j >= 0 && daftarLagu[j].ID > key.ID { daftarLagu[j+1] = daftarLagu[j]; j-- }
+		key = daftarLagu[i]
+		j = i - 1
+		for j >= 0 && daftarLagu[j].ID > key.ID {
+			daftarLagu[j+1] = daftarLagu[j]
+			j--
+		}
 		daftarLagu[j+1] = key
 	}
 }
-func selectionSortByIDDesc() { /* Implementasi sama */
-	var i, j, idxExtreme int; n := jumlahLaguTerisi
+
+// selectionSortByIDDesc mengurutkan daftarLagu berdasarkan ID secara menurun (descending) menggunakan selection sort.
+func selectionSortByIDDesc() {
+	var i, j, idxExtreme int
+	n := jumlahLaguTerisi
 	for i = 0; i < n-1; i++ {
 		idxExtreme = i
-		for j = i + 1; j < n; j++ { if daftarLagu[j].ID > daftarLagu[idxExtreme].ID { idxExtreme = j } }
-		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
-	}
-}
-func insertionSortByJudulAsc() { /* Implementasi sama */
-	var i, j int; var key Song
-	for i = 1; i < jumlahLaguTerisi; i++ {
-		key = daftarLagu[i]; j = i - 1
-		for j >= 0 && strings.ToLower(daftarLagu[j].Judul) > strings.ToLower(key.Judul) { daftarLagu[j+1] = daftarLagu[j]; j-- }
-		daftarLagu[j+1] = key
-	}
-}
-func selectionSortByJudulDesc() { /* Implementasi sama */
-	var i, j, idxExtreme int; n := jumlahLaguTerisi
-	for i = 0; i < n-1; i++ {
-		idxExtreme = i
-		for j = i + 1; j < n; j++ { if strings.ToLower(daftarLagu[j].Judul) > strings.ToLower(daftarLagu[idxExtreme].Judul) { idxExtreme = j } }
-		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
-	}
-}
-func insertionSortByPenyanyiAsc() { /* Implementasi sama */
-	var i, j int; var key Song
-	for i = 1; i < jumlahLaguTerisi; i++ {
-		key = daftarLagu[i]; j = i - 1
-		for j >= 0 && strings.ToLower(daftarLagu[j].Penyanyi) > strings.ToLower(key.Penyanyi) { daftarLagu[j+1] = daftarLagu[j]; j-- }
-		daftarLagu[j+1] = key
-	}
-}
-func selectionSortByPenyanyiDesc() { /* Implementasi sama */
-	var i, j, idxExtreme int; n := jumlahLaguTerisi
-	for i = 0; i < n-1; i++ {
-		idxExtreme = i
-		for j = i + 1; j < n; j++ { if strings.ToLower(daftarLagu[j].Penyanyi) > strings.ToLower(daftarLagu[idxExtreme].Penyanyi) { idxExtreme = j } }
-		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
-	}
-}
-func insertionSortByDurasiAsc() { /* Implementasi sama */
-	var i, j int; var key Song
-	for i = 1; i < jumlahLaguTerisi; i++ {
-		key = daftarLagu[i]; j = i - 1
-		for j >= 0 && daftarLagu[j].Durasi > key.Durasi { daftarLagu[j+1] = daftarLagu[j]; j-- }
-		daftarLagu[j+1] = key
-	}
-}
-func selectionSortByDurasiDesc() { /* Implementasi sama */
-	var i, j, idxExtreme int; n := jumlahLaguTerisi
-	for i = 0; i < n-1; i++ {
-		idxExtreme = i
-		for j = i + 1; j < n; j++ { if daftarLagu[j].Durasi > daftarLagu[idxExtreme].Durasi { idxExtreme = j } }
-		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
-	}
-}
-func insertionSortByPendengarAsc() { /* Implementasi sama */
-	var i, j int; var key Song
-	for i = 1; i < jumlahLaguTerisi; i++ {
-		key = daftarLagu[i]; j = i - 1
-		for j >= 0 && daftarLagu[j].JumlahPendengar > key.JumlahPendengar { daftarLagu[j+1] = daftarLagu[j]; j-- }
-		daftarLagu[j+1] = key
-	}
-}
-func selectionSortByPendengarDesc() { /* Implementasi sama */
-	var i, j, idxExtreme int; n := jumlahLaguTerisi
-	for i = 0; i < n-1; i++ {
-		idxExtreme = i
-		for j = i + 1; j < n; j++ { if daftarLagu[j].JumlahPendengar > daftarLagu[idxExtreme].JumlahPendengar { idxExtreme = j } }
+		for j = i + 1; j < n; j++ {
+			if daftarLagu[j].ID > daftarLagu[idxExtreme].ID {
+				idxExtreme = j
+			}
+		}
 		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
 	}
 }
 
-// hitungRataRataPendengar menghitung rata-rata jumlah pendengar.
+// insertionSortByJudulAsc mengurutkan daftarLagu berdasarkan judul secara menaik (A-Z) menggunakan insertion sort.
+func insertionSortByJudulAsc() {
+	var i, j int
+	var key Song
+	for i = 1; i < jumlahLaguTerisi; i++ {
+		key = daftarLagu[i]
+		j = i - 1
+		for j >= 0 && strings.ToLower(daftarLagu[j].Judul) > strings.ToLower(key.Judul) {
+			daftarLagu[j+1] = daftarLagu[j]
+			j--
+		}
+		daftarLagu[j+1] = key
+	}
+}
+
+// selectionSortByJudulDesc mengurutkan daftarLagu berdasarkan judul secara menurun (Z-A) menggunakan selection sort.
+func selectionSortByJudulDesc() {
+	var i, j, idxExtreme int
+	n := jumlahLaguTerisi
+	for i = 0; i < n-1; i++ {
+		idxExtreme = i
+		for j = i + 1; j < n; j++ {
+			if strings.ToLower(daftarLagu[j].Judul) > strings.ToLower(daftarLagu[idxExtreme].Judul) {
+				idxExtreme = j
+			}
+		}
+		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
+	}
+}
+
+// insertionSortByPenyanyiAsc mengurutkan daftarLagu berdasarkan nama penyanyi secara menaik (A-Z) menggunakan insertion sort.
+func insertionSortByPenyanyiAsc() {
+	var i, j int
+	var key Song
+	for i = 1; i < jumlahLaguTerisi; i++ {
+		key = daftarLagu[i]
+		j = i - 1
+		for j >= 0 && strings.ToLower(daftarLagu[j].Penyanyi) > strings.ToLower(key.Penyanyi) {
+			daftarLagu[j+1] = daftarLagu[j]
+			j--
+		}
+		daftarLagu[j+1] = key
+	}
+}
+
+// selectionSortByPenyanyiDesc mengurutkan daftarLagu berdasarkan nama penyanyi secara menurun (Z-A) menggunakan selection sort.
+func selectionSortByPenyanyiDesc() {
+	var i, j, idxExtreme int
+	n := jumlahLaguTerisi
+	for i = 0; i < n-1; i++ {
+		idxExtreme = i
+		for j = i + 1; j < n; j++ {
+			if strings.ToLower(daftarLagu[j].Penyanyi) > strings.ToLower(daftarLagu[idxExtreme].Penyanyi) {
+				idxExtreme = j
+			}
+		}
+		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
+	}
+}
+
+// insertionSortByDurasiAsc mengurutkan daftarLagu berdasarkan durasi secara menaik (terpendek) menggunakan insertion sort.
+func insertionSortByDurasiAsc() {
+	var i, j int
+	var key Song
+	for i = 1; i < jumlahLaguTerisi; i++ {
+		key = daftarLagu[i]
+		j = i - 1
+		for j >= 0 && daftarLagu[j].Durasi > key.Durasi {
+			daftarLagu[j+1] = daftarLagu[j]
+			j--
+		}
+		daftarLagu[j+1] = key
+	}
+}
+
+// selectionSortByDurasiDesc mengurutkan daftarLagu berdasarkan durasi secara menurun (terpanjang) menggunakan selection sort.
+func selectionSortByDurasiDesc() {
+	var i, j, idxExtreme int
+	n := jumlahLaguTerisi
+	for i = 0; i < n-1; i++ {
+		idxExtreme = i
+		for j = i + 1; j < n; j++ {
+			if daftarLagu[j].Durasi > daftarLagu[idxExtreme].Durasi {
+				idxExtreme = j
+			}
+		}
+		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
+	}
+}
+
+// insertionSortByPendengarAsc mengurutkan daftarLagu berdasarkan jumlah pendengar secara menaik (tersedikit) menggunakan insertion sort.
+func insertionSortByPendengarAsc() {
+	var i, j int
+	var key Song
+	for i = 1; i < jumlahLaguTerisi; i++ {
+		key = daftarLagu[i]
+		j = i - 1
+		for j >= 0 && daftarLagu[j].JumlahPendengar > key.JumlahPendengar {
+			daftarLagu[j+1] = daftarLagu[j]
+			j--
+		}
+		daftarLagu[j+1] = key
+	}
+}
+
+// selectionSortByPendengarDesc mengurutkan daftarLagu berdasarkan jumlah pendengar secara menurun (terbanyak) menggunakan selection sort.
+func selectionSortByPendengarDesc() {
+	var i, j, idxExtreme int
+	n := jumlahLaguTerisi
+	for i = 0; i < n-1; i++ {
+		idxExtreme = i
+		for j = i + 1; j < n; j++ {
+			if daftarLagu[j].JumlahPendengar > daftarLagu[idxExtreme].JumlahPendengar {
+				idxExtreme = j
+			}
+		}
+		daftarLagu[i], daftarLagu[idxExtreme] = daftarLagu[idxExtreme], daftarLagu[i]
+	}
+}
+
+// hitungRataRataPendengar menghitung dan mengembalikan rata-rata jumlah pendengar dari semua lagu.
 func hitungRataRataPendengar() float64 {
 	if jumlahLaguTerisi == 0 {
 		return 0.0
@@ -439,7 +548,6 @@ func hitungRataRataPendengar() float64 {
 	return float64(totalPendengar) / float64(jumlahLaguTerisi)
 }
 
-// main adalah fungsi utama program.
 func main() {
 	var pilihanMenu int
 	var errConv, errRead error
@@ -450,26 +558,25 @@ func main() {
 
 	var programBerjalan bool = true
 	for programBerjalan {
-		fmt.Println("======================================================")
-		fmt.Println("|        DATABASE LAGU FAVORIT MAHASISWA             |")
-		fmt.Println("======================================================")
+		fmt.Println("=========================================================")
+		fmt.Println("|           DATABASE LAGU FAVORIT MAHASISWA             |")
+		fmt.Println("=========================================================")
 		tampilkanMenu()
 		fmt.Print("Pilih menu (1-8): ")
 
 		inputLine, errRead = mainReader.ReadString('\n')
 		if errRead != nil {
 			fmt.Println("| Kesalahan membaca pilihan menu:", errRead)
-			errConv = fmt.Errorf("kesalahan baca") // Set errConv agar masuk ke blok tekan enter
+			errConv = fmt.Errorf("kesalahan baca")
 		}
 		inputTrimmed = strings.TrimSpace(inputLine)
-		if errRead == nil { // Hanya coba konversi jika tidak ada error baca
+		if errRead == nil {
 			pilihanMenu, errConv = strconv.Atoi(inputTrimmed)
 		}
 
-
-		fmt.Println("======================================================")
+		fmt.Println("=========================================================")
 		if errConv != nil {
-			fmt.Println("| ! Input tidak valid. Harap masukkan angka.         |")
+			fmt.Println("| ! Input tidak valid. Harap masukkan angka.            |")
 		} else {
 			switch pilihanMenu {
 			case 1:
@@ -485,50 +592,51 @@ func main() {
 			case 6:
 				menuUrutkanLagu(mainReader)
 			case 7:
-				fmt.Println("| --- Rata-rata Jumlah Pendengar ---                 |")
+				fmt.Println("| --- Rata-rata Jumlah Pendengar ---                    |")
 				rataRata := hitungRataRataPendengar()
 				rataRataStr := fmt.Sprintf("%.2f", rataRata)
-				// Lebar total untuk baris ini sekitar 50 karakter. Konten "Rata-rata ... :" ~28 char.
-				// Sisa untuk angka dan padding. Angka bisa bervariasi.
-				// fmt.Printf("| Rata-rata pendengar per lagu: %-22.2f |\n", rataRata) // Sebelumnya
-				// Membuat perataan kanan untuk angka dengan padding dinamis
 				fmt.Printf("| Rata-rata pendengar per lagu: %22s |\n", rataRataStr)
-
-
 			case 8:
-				fmt.Println("| Terima kasih telah menggunakan program ini.        |")
-				fmt.Println("======================================================")
+				fmt.Println("| Terima kasih telah menggunakan program ini.           |")
+				fmt.Println("=========================================================")
 				programBerjalan = false
 			default:
-				fmt.Println("| ! Pilihan tidak valid. Silakan pilih (1-8).        |")
+				fmt.Println("| ! Pilihan tidak valid. Silakan pilih (1-8).           |")
 			}
 		}
 
-		if programBerjalan { // Hanya minta Enter jika program belum akan keluar
-			fmt.Println("======================================================")
+		if programBerjalan {
+			fmt.Println("=========================================================")
 			fmt.Print("\nTekan Enter untuk kembali ke menu...")
-			_, errRead = mainReader.ReadString('\n')
-			if errRead != nil {
-				// fmt.Println("| Kesalahan saat menunggu Enter:", errRead) // Opsional
+			var enterKeyInput string
+			var errEnterKey error
+			
+			enterKeyInput, errEnterKey = mainReader.ReadString('\n')
+			if errEnterKey != nil {
+				fmt.Println("\nError kecil saat membaca 'Enter', program lanjut.")
+			}
+			
+			if len(enterKeyInput) < 0 {
+				return
 			}
 		}
 	}
 }
 
-// tampilkanMenu menampilkan opsi menu utama.
+// tampilkanMenu menampilkan opsi menu utama kepada pengguna.
 func tampilkanMenu() {
-	fmt.Println("| 1. Tambah Lagu Baru                                |")
-	fmt.Println("| 2. Tampilkan Semua Lagu                            |")
-	fmt.Println("| 3. Update Data Lagu                                |")
-	fmt.Println("| 4. Hapus Lagu                                      |")
-	fmt.Println("| 5. Cari Lagu                                       |")
-	fmt.Println("| 6. Urutkan Lagu                                    |")
-	fmt.Println("| 7. Hitung Rata-rata Jumlah Pendengar               |")
-	fmt.Println("| 8. Keluar                                          |")
-	fmt.Println("======================================================")
+	fmt.Println("| 1. Tambah Lagu Baru                                   |")
+	fmt.Println("| 2. Tampilkan Semua Lagu                               |")
+	fmt.Println("| 3. Update Data Lagu                                   |")
+	fmt.Println("| 4. Hapus Lagu                                         |")
+	fmt.Println("| 5. Cari Lagu                                          |")
+	fmt.Println("| 6. Urutkan Lagu                                       |")
+	fmt.Println("| 7. Hitung Rata-rata Jumlah Pendengar                  |")
+	fmt.Println("| 8. Keluar                                             |")
+	fmt.Println("=========================================================")
 }
 
-// menuCariLagu menampilkan sub-menu untuk pencarian.
+// menuCariLagu menampilkan sub-menu untuk fitur pencarian lagu.
 func menuCariLagu(reader *bufio.Reader) {
 	var sub int
 	var errConv, errRead error
@@ -538,53 +646,61 @@ func menuCariLagu(reader *bufio.Reader) {
 	var hasilPencarian [NMAXLagu]Song
 	var jumlahHasil int
 
-	fmt.Println("| --- Cari Lagu ---                                  |")
-	fmt.Println("| 1. Cari berdasarkan ID (Binary Search)             |")
-	fmt.Println("| 2. Cari berdasarkan Nama Penyanyi (Sequential Search)|")
-	fmt.Println("======================================================")
-	fmt.Print("| Pilih sub-menu (1-2): ")
+	fmt.Println("| 1. Cari berdasarkan ID (Binary Search)                |")
+	fmt.Println("| 2. Cari berdasarkan Nama Penyanyi (Sequential Search) |")
+	fmt.Println("=========================================================")
+	fmt.Print("Pilih sub-menu (1-2): ")
 
 	inputLine, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca sub-menu:", errRead); return }
+	if errRead != nil {
+		fmt.Println("Kesalahan membaca sub-menu:", errRead)
+		return
+	}
 	inputTrimmed = strings.TrimSpace(inputLine)
 	sub, errConv = strconv.Atoi(inputTrimmed)
 
 	if errConv != nil {
-		fmt.Println("| Pilihan tidak valid. Kembali ke menu utama.        |")
+		fmt.Println("Pilihan tidak valid. Kembali ke menu utama.")
 		return
 	}
 
 	switch sub {
 	case 1:
-		fmt.Print("| Masukkan ID lagu: ")
+		fmt.Print("Masukkan ID lagu: ")
 		id, errRead = reader.ReadString('\n')
-		if errRead != nil { fmt.Println("| Kesalahan membaca ID:", errRead); return }
+		if errRead != nil {
+			fmt.Println("Kesalahan membaca ID:", errRead)
+			return
+		}
 		id = strings.TrimSpace(id)
 		index, found = binarySearchByID(id)
 		if found {
-			var tempArrayForDisplay [NMAXLagu]Song // Array sementara untuk satu lagu
+			var tempArrayForDisplay [NMAXLagu]Song
 			tempArrayForDisplay[0] = daftarLagu[index]
 			tampilkanDataLagu(tempArrayForDisplay, 1)
 		} else {
-			fmt.Println("| Lagu tidak ditemukan.                              |")
+			fmt.Println("Lagu tidak ditemukan.")
 		}
 	case 2:
-		fmt.Print("| Masukkan nama penyanyi (boleh sebagian): ")
+		fmt.Print("Masukkan nama penyanyi (boleh sebagian): ")
 		nama, errRead = reader.ReadString('\n')
-		if errRead != nil { fmt.Println("| Kesalahan membaca nama penyanyi:", errRead); return }
+		if errRead != nil {
+			fmt.Println("Kesalahan membaca nama penyanyi:", errRead)
+			return
+		}
 		nama = strings.TrimSpace(nama)
 		jumlahHasil = sequentialSearchByPenyanyi(nama, &hasilPencarian)
 		if jumlahHasil == 0 {
-			fmt.Println("| Tidak ditemukan lagu dari penyanyi tersebut.         |")
+			fmt.Println("Tidak ditemukan lagu dari penyanyi tersebut.")
 		} else {
 			tampilkanDataLagu(hasilPencarian, jumlahHasil)
 		}
 	default:
-		fmt.Println("| Pilihan sub-menu tidak valid.                      |")
+		fmt.Println("Pilihan sub-menu tidak valid.")
 	}
 }
 
-// menuUrutkanLagu menampilkan sub-menu untuk pengurutan.
+// menuUrutkanLagu menampilkan sub-menu untuk fitur pengurutan lagu.
 func menuUrutkanLagu(reader *bufio.Reader) {
 	var sub int
 	var errConv, errRead error
@@ -606,7 +722,10 @@ func menuUrutkanLagu(reader *bufio.Reader) {
 	fmt.Print("| Pilih sub-menu (1–11): ")
 
 	inputLine, errRead = reader.ReadString('\n')
-	if errRead != nil { fmt.Println("| Kesalahan membaca sub-menu:", errRead); return }
+	if errRead != nil {
+		fmt.Println("| Kesalahan membaca sub-menu:", errRead)
+		return
+	}
 	inputTrimmed = strings.TrimSpace(inputLine)
 	sub, errConv = strconv.Atoi(inputTrimmed)
 
@@ -614,22 +733,34 @@ func menuUrutkanLagu(reader *bufio.Reader) {
 		fmt.Println("| Pilihan tidak valid. Kembali ke menu utama.        |")
 		return
 	}
-	if sub == 11 { return }
+	if sub == 11 {
+		return
+	}
 
 	sorted := true
 	switch sub {
-	case 1: insertionSortByIDAsc()
-	case 2: selectionSortByIDDesc()
-	case 3: insertionSortByJudulAsc()
-	case 4: selectionSortByJudulDesc()
-	case 5: insertionSortByPenyanyiAsc()
-	case 6: selectionSortByPenyanyiDesc()
-	case 7: selectionSortByDurasiDesc()
-	case 8: insertionSortByDurasiAsc()
-	case 9: selectionSortByPendengarDesc()
-	case 10: insertionSortByPendengarAsc()
+	case 1:
+		insertionSortByIDAsc()
+	case 2:
+		selectionSortByIDDesc()
+	case 3:
+		insertionSortByJudulAsc()
+	case 4:
+		selectionSortByJudulDesc()
+	case 5:
+		insertionSortByPenyanyiAsc()
+	case 6:
+		selectionSortByPenyanyiDesc()
+	case 7:
+		selectionSortByDurasiDesc()
+	case 8:
+		insertionSortByDurasiAsc()
+	case 9:
+		selectionSortByPendengarDesc()
+	case 10:
+		insertionSortByPendengarAsc()
 	default:
-		fmt.Println("| Pilihan sub-menu tidak valid.                      |")
+		fmt.Println("| Pilihan sub-menu tidak valid.                         |")
 		sorted = false
 	}
 
@@ -638,32 +769,25 @@ func menuUrutkanLagu(reader *bufio.Reader) {
 	}
 }
 
-// truncateString memotong string jika lebih panjang dari maxLength dan menambahkan "..."
+// truncateString memotong string jika lebih panjang dari maxLength dan menambahkan "...".
 func truncateString(s string, maxLength int) string {
 	if len(s) > maxLength {
 		if maxLength-3 > 0 {
 			return s[:maxLength-3] + "..."
 		}
-		return s[:maxLength] // Jika maxLength terlalu kecil untuk "..."
+		return s[:maxLength]
 	}
 	return s
 }
 
-
-// tampilkanDataLagu adalah fungsi generik untuk menampilkan data lagu dari array.
-// Menerima array (disalin), jumlah data valid, dan judul kustom untuk tabel.
-// Perhatikan: Menerima array [NMAXLagu]Song akan menyalin seluruh array.
-// Jika NMAXLagu besar, ini bisa tidak efisien. Alternatifnya adalah pointer.
+// tampilkanDataLagu menampilkan data lagu dalam format tabel.
 func tampilkanDataLagu(data [NMAXLagu]Song, count int) {
-	// Definisi lebar kolom yang konsisten
 	idWidth := 4
 	judulWidth := 30
-	penyanyiWidth := 38 // Cukup untuk nama penyanyi yang sangat panjang
-	durasiWidth := 6    // Format "XX.X"
-	pendengarWidth := 9 // Untuk angka besar
+	penyanyiWidth := 38
+	durasiWidth := 6
+	pendengarWidth := 9
 
-	// Membuat format string untuk garis horizontal
-	// Panjang setiap segmen garis = lebarKontenKolom + 2 (untuk spasi padding)
 	headerLine := fmt.Sprintf("+-%s-+-%s-+-%s-+-%s-+-%s-+",
 		strings.Repeat("-", idWidth),
 		strings.Repeat("-", judulWidth),
@@ -672,32 +796,31 @@ func tampilkanDataLagu(data [NMAXLagu]Song, count int) {
 		strings.Repeat("-", pendengarWidth))
 	fmt.Println(headerLine)
 
-	// Header kolom
 	fmt.Printf("| %-*s | %-*s | %-*s | %*s | %*s |\n",
 		idWidth, "ID",
 		judulWidth, "JUDUL",
 		penyanyiWidth, "PENYANYI",
-		durasiWidth, "DURASI",    // Rata kanan
-		pendengarWidth, "PENDENGAR") // Rata kanan
+		durasiWidth, "DURASI",
+		pendengarWidth, "PENDENGAR")
 	fmt.Println(headerLine)
 
 	if count == 0 {
 		message := "Belum ada lagu untuk ditampilkan."
-		// Hitung total lebar konten dalam tabel (tanpa pipa terluar) untuk centering
-		// (width1+2) + (width2+2) + ... + (widthN+2) + (N-1)*1 (untuk pipa internal)
-		// Atau lebih mudah: len(headerLine) - 2
 		effectiveTableWidth := len(headerLine) - 2
 		paddingLen := (effectiveTableWidth - len(message)) / 2
-		if paddingLen < 0 { paddingLen = 0 }
+		if paddingLen < 0 {
+			paddingLen = 0
+		}
 		rightPaddingLen := effectiveTableWidth - len(message) - paddingLen
-		if rightPaddingLen < 0 { rightPaddingLen = 0 }
+		if rightPaddingLen < 0 {
+			rightPaddingLen = 0
+		}
 
 		fmt.Printf("|%*s%s%*s|\n", paddingLen, "", message, rightPaddingLen, "")
 		fmt.Println(headerLine)
 		return
 	}
 
-	// Data lagu
 	var displayJudul, displayPenyanyi string
 	for i := 0; i < count; i++ {
 		lagu := data[i]
